@@ -3,6 +3,7 @@
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from werkzeug.exceptions import MethodNotAllowed
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
@@ -17,5 +18,7 @@ def hello_world():
             'age': 21,
             'bio': "I'm a Software Engineer, with intermediary knowledge of python"
             }
-    return jsonify(new_dict)
+        return jsonify(new_dict)
+    else:
+        raise MethodNotAllowed(['GET'])
 
